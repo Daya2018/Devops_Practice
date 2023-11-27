@@ -20,7 +20,7 @@ stage('push image to Hub'){
 steps{
 script{
 withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-sh 'docker login --username daya1992 -p ${dockerhubpwd}'
+sh 'docker login --username daya1992 -p ${Daya@1992}'
 sh 'docker push daya1992/daya:1.0'
 }
 
