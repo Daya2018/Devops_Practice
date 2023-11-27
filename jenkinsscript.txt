@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('build') {
+            steps {
+checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Daya2018/Devops_Practice.git']]])
+sh 'mvn clean install'
+            }
+        }
+
+stage('build docker image') {
+            steps {
+                script {
+sh 'docker build -t daya:1.0 .'
