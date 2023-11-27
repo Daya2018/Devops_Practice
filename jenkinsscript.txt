@@ -12,4 +12,22 @@ sh 'mvn clean install'
 stage('build docker image') {
             steps {
                 script {
-sh 'docker build -t daya:1.0 .'
+sh 'docker build -t manju:1.0 .'
+                }
+            }
+        }
+stage('push image to Hub'){
+steps{
+script{
+withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+sh 'docker login --username daya1992 -p ${dockerhubpwd}'
+sh 'docker push daya1992/daya:1.0'
+}
+
+    }
+}
+}
+
+ }
+}
+
